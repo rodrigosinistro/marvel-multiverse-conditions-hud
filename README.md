@@ -2,6 +2,8 @@
 
 Substitui o painel padrão de **Atribuir Efeitos de Condição** do Foundry pelos **status oficiais do Marvel Multiverse RPG (D616)**, com foco em clareza visual e fluxo rápido de jogo.
 
+Manifest: https://raw.githubusercontent.com/rodrigosinistro/marvel-multiverse-conditions-hud/main/module.json
+
 ## Principais recursos
 - **Ícone único “M”** (preto e branco) para todas as condições (placeholder padrão).
 - **Grade compacta** de ícones **26×26 px** com **1 px** de espaçamento, ordenação **alfabética** (esquerda→direita; cima→baixo).
