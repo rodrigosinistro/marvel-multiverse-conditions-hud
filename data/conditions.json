@@ -4,34 +4,22 @@
       "id": "mmrpg.ablaze",
       "name": "Ablaze (Em Chamas)",
       "icon": "icons/m.svg",
-      "damage": {
-        "resource": "health",
-        "perTurn": 5
-      },
-      "remove": "Água/extintor ou rolar no chão (Agility TN 10, 1 ação).",
-      "description": "Perde 5 Health no fim de cada turno. Narrador decide inflamabilidade."
+      "description": "Perde 5 Health no fim de cada turno. Narrador decide inflamabilidade.",
+      "remove": "Água/extintor ou rolar no chão (Agility TN 10, 1 ação)."
     },
     {
       "id": "mmrpg.bleeding",
       "name": "Bleeding (Sangrando)",
       "icon": "icons/m.svg",
-      "damage": {
-        "resource": "health",
-        "perTurn": 5
-      },
-      "remove": "Logic TN 10 (1 ação) ou recuperar 1+ Health.",
-      "description": "Perde 5 Health no fim de cada turno."
+      "description": "Perde 5 Health no fim de cada turno.",
+      "remove": "Logic TN 10 (1 ação) ou recuperar 1+ Health."
     },
     {
       "id": "mmrpg.corroding",
       "name": "Corroding (Corroído)",
       "icon": "icons/m.svg",
-      "damage": {
-        "resource": "health",
-        "perTurn": 5
-      },
-      "remove": "Lavar com muita água.",
-      "description": "Perde 5 Health no fim de cada turno."
+      "description": "Perde 5 Health no fim de cada turno.",
+      "remove": "Lavar com muita água."
     },
     {
       "id": "mmrpg.grabbed",
