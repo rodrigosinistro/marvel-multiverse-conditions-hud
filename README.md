@@ -1,39 +1,61 @@
+# Marvel Multiverse — Conditions HUD (Foundry VTT v13)
 
-# Marvel Multiverse – Conditions HUD
+Substitui o painel padrão de **Atribuir Efeitos de Condição** do Foundry pelos **status oficiais do Marvel Multiverse RPG (D616)**, com foco em clareza visual e fluxo rápido de jogo.
 
-- Substitui o botão **Atribuir Efeitos de Condição** do HUD por **Condições do Marvel Multiverse RPG**.
-- Mostra um **painel** com as condições ativas do token selecionado (ancorado à **esquerda do Chat**, no topo-direito).
-- Exibe **tooltip grande** com a descrição completa no hover.
-- **GM** pode remover condição pelo **×** na pílula.
-- **Opcional:** aplica dano automático no fim do turno para *Ablaze, Bleeding, Corroding*, respeitando **Health DR (Sturdy)**.
+## Principais recursos
+- **Ícone único “M”** (preto e branco) para todas as condições (placeholder padrão).
+- **Grade compacta** de ícones **26×26 px** com **1 px** de espaçamento, ordenação **alfabética** (esquerda→direita; cima→baixo).
+- Aplicar condição no token também exibe **pílula no HUD lateral** com botão **X (apenas GM)** para remover.
+- **Tooltip ampliado (14px)** ao passar o mouse na pílula, mostrando **nome + descrição completa** (PT/EN) lida do JSON/Journal do sistema.
+- **Auto-aplicação por atributos** (v0.3.x):
+  - **FOCUS ≤ 0** → aplica **Demoralized** (*Desmoralizado*).
+  - **HEALTH ≤ 0** → aplica **Incapacitated** (*Incapaz/KO*).
+  - Ao voltar a **> 0**, remove a condição correspondente.
+  - Funciona **dentro e fora de combate**, **sem** criar `ActiveEffects`.
+  - Usa a API v13-safe: `Actor#toggleStatusEffect(id, { active, token })`.
+
+## Requisitos
+- **Foundry VTT**: v13.x
+- **Sistema**: *Marvel Multiverse RPG (D616)*
 
 ## Instalação
-1. Extraia a pasta `marvel-multiverse-conditions-hud` em `Data/modules/` (deixe `module.json` na raiz dessa pasta).
-2. Ative em **Configurar Módulos**.
-3. Configure em **Configurações do Módulo**:
-   - *Offset X/Y do painel* para ajuste fino.
-   - *Aplicar dano... no fim do turno*.
+1. Baixe o último release em **Releases** (arquivo `.zip`).  
+2. Extraia em `Data/modules/` (ficará `Data/modules/marvel-multiverse-conditions-hud/`).  
+3. Habilite o módulo em *Configurações → Gerenciar Módulos*.
 
-## v0.2.4
-- Painel ancorado por `right:` usando a largura da `#sidebar` (fica sempre à esquerda do ícone de Chat).
-- Tooltip abre para a esquerda da pílula, centralizado verticalmente (sem "passear" pela tela).
-- Correções para HUD do Foundry v13 (títulos amigáveis e mapeamento `name/label/img`).
+> **Obs.**: Você também pode instalar pelo *Manifest URL* do `module.json` hospedado no GitHub (aba *Raw*).
 
+## Uso
+- Clique no botão de **Atribuir Efeitos de Condições** do token.  
+- Selecione as condições desejadas (ícones “M” em ordem alfabética).  
+- Ao aplicar, aparecerão **pílulas no HUD**. Passe o mouse para ler a descrição; o **X** remove (apenas **GM**).  
+- **Auto-aplicar**: altere **FOCUS**/**HEALTH** na ficha do ator (ou via macro) para ativar/desativar automaticamente **Demoralized**/**Incapacitated**.
 
-## v0.2.5
-- Ícones do HUD um pouco menores (28px) para alinhar melhor.
-- Condições em ordem alfabética (esquerda→direita, cima→baixo).
+## Comandos úteis (Console)
+```js
+// versão e arquivo principal
+const m = game.modules.get("marvel-multiverse-conditions-hud");
+console.log("Conditions HUD:", m?.version, [...(m?.esmodules ?? [])][0]);
 
-## v0.2.6
-- Corrige **tooltip duplicado** no HUD (usa apenas `data-tooltip`, removendo `title`).
-- Reduz o **espaçamento** entre os ícones do HUD (gap: 3px) para acompanhar o novo tamanho.
-
-## v0.2.7
-- HUD ainda mais compacto: **1px** de espaçamento entre ícones (e sem margens).
-
-## Instalação via Manifest (Foundry)
-Cole este URL em *Install Module* → *Manifest URL*:
-
+// forçar revalidação de todos os atores (auto-aplicar)
+for (const a of game.actors) await MMRPG_CHUD.applyFromStats(a);
+ui.notifications.info("Revalidação rodada.");
 ```
-https://raw.githubusercontent.com/rodrigosinistro/marvel-multiverse-conditions-hud/main/module.json
-```
+
+## Solução de problemas
+- **Ícones padrão do Foundry aparecem ao invés do “M”**  
+  Recarregue (F5) e verifique o console: não pode haver erro de sintaxe no arquivo do módulo.
+- **Condição não auto-aplica**  
+  • Garanta que o token está em cena e vinculado ao ator correto.  
+  • Confira se **FOCUS/HEALTH** chegou a 0 na ficha.  
+  • Teste o comando de revalidação acima.  
+  • Verifique conflitos com outros módulos que mexam em `CONFIG.statusEffects`.
+
+## Desenvolvimento
+- **Sem `ActiveEffects`**: o módulo trabalha apenas com **status de token/ator**.  
+- Hooks usados: `init`, `ready`, `updateActor`.  
+- Leituras: `foundry.utils.getProperty(actor, "system.health.value")` e `"system.focus.value"`.  
+- Tokens do ator: `canvas.tokens.placeables.filter(t => t.actor?.id === actor.id)`.
+
+## Versão estável atual
+**v0.3.2** — ver *CHANGELOG.md*

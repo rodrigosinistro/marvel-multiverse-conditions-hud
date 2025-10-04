@@ -1,7 +1,7 @@
 {
   "id": "marvel-multiverse-conditions-hud",
   "title": "Marvel Multiverse – Conditions HUD",
-  "version": "0.2.7",
+  "version": "0.3.2",
   "compatibility": {
     "minimum": 13,
     "verified": "13"
@@ -11,7 +11,7 @@
       "name": "Rodrigo + ChatGPT"
     }
   ],
-  "description": "Substitui os efeitos de condição do Token HUD pelas Condições oficiais do Marvel Multiverse RPG, mostra um painel com descrições e aplica dano por turno (Ablaze/Bleeding/Corroding) respeitando Sturdy.",
+  "description": "Substitui os efeitos do Token HUD pelas Condições do Marvel Multiverse RPG; painel com descrições; dano por turno (Ablaze/Bleeding/Corroding) no fim do turno.",
   "url": "https://github.com/rodrigosinistro/marvel-multiverse-conditions-hud",
   "license": "MIT",
   "esmodules": [
@@ -20,7 +20,6 @@
   "styles": [
     "styles/styles.css"
   ],
-  "packs": [],
   "relationships": {
     "systems": [
       {
@@ -33,5 +32,5 @@
   "bugs": "https://github.com/rodrigosinistro/marvel-multiverse-conditions-hud/issues",
   "changelog": "https://raw.githubusercontent.com/rodrigosinistro/marvel-multiverse-conditions-hud/main/README.md",
   "manifest": "https://raw.githubusercontent.com/rodrigosinistro/marvel-multiverse-conditions-hud/main/module.json",
-  "download": "https://github.com/rodrigosinistro/marvel-multiverse-conditions-hud/releases/download/v0.2.7/marvel-multiverse-conditions-hud-v0.2.7.zip"
+  "download": "https://github.com/rodrigosinistro/marvel-multiverse-conditions-hud/releases/download/v0.3.2/marvel-multiverse-conditions-hud-v0.3.2.zip"
 }
